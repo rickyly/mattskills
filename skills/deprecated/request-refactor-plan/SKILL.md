@@ -1,25 +1,25 @@
 ---
 name: request-refactor-plan
-description: Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps.
+description: 通过用户访谈创建一份包含微小提交的详细重构计划，然后将其作为 GitHub issue 创建。当用户想要规划一次重构、创建一份重构 RFC，或把一次重构拆分成安全的增量步骤时使用。
 ---
 
-This skill will be invoked when the user wants to create a refactor request. You should go through the steps below. You may skip steps if you don't consider them necessary.
+当用户想要创建一个重构请求时，会触发本技能。你应当按照下面的步骤进行。如果你认为某些步骤没有必要，可以跳过。
 
-1. Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
+1. 请用户给出对他们想解决的问题的一段详尽描述，以及任何可能的解决思路。
 
-2. Explore the repo to verify their assertions and understand the current state of the codebase.
+2. 探索仓库，以核实他们的论断并理解代码库的现状。
 
-3. Ask whether they have considered other options, and present other options to them.
+3. 询问他们是否考虑过其他方案，并向他们提出其他方案。
 
-4. Interview the user about the implementation. Be extremely detailed and thorough.
+4. 就实现方案访谈用户。要极其详尽和周全。
 
-5. Hammer out the exact scope of the implementation. Work out what you plan to change and what you plan not to change.
+5. 敲定实现的确切范围。理清你计划改动什么、计划不改动什么。
 
-6. Look in the codebase to check for test coverage of this area of the codebase. If there is insufficient test coverage, ask the user what their plans for testing are.
+6. 在代码库中查看该区域是否有测试覆盖。如果测试覆盖不足，询问用户的测试计划是什么。
 
-7. Break the implementation into a plan of tiny commits. Remember Martin Fowler's advice to "make each refactoring step as small as possible, so that you can always see the program working."
+7. 把实现拆分成一个由微小提交构成的计划。记住 Martin Fowler 的建议："make each refactoring step as small as possible, so that you can always see the program working."
 
-8. Create a GitHub issue with the refactor plan. Use the following template for the issue description:
+8. 用重构计划创建一个 GitHub issue。issue 描述使用以下模板：
 
 <refactor-plan-template>
 

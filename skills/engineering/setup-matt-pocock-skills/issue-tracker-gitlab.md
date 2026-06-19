@@ -1,35 +1,35 @@
-# Issue tracker: GitLab
+# Issue 跟踪器：GitLab
 
-Issues and PRDs for this repo live as GitLab issues. Use the [`glab`](https://gitlab.com/gitlab-org/cli) CLI for all operations.
+本仓库的 issue 和 PRD 以 GitLab issue 的形式存放。所有操作都使用 [`glab`](https://gitlab.com/gitlab-org/cli) CLI。
 
-## Conventions
+## 约定
 
-- **Create an issue**: `glab issue create --title "..." --description "..."`. Use a heredoc for multi-line descriptions. Pass `--description -` to open an editor.
-- **Read an issue**: `glab issue view <number> --comments`. Use `-F json` for machine-readable output.
-- **List issues**: `glab issue list -F json` with appropriate `--label` filters.
-- **Comment on an issue**: `glab issue note <number> --message "..."`. GitLab calls comments "notes".
-- **Apply / remove labels**: `glab issue update <number> --label "..."` / `--unlabel "..."`. Multiple labels can be comma-separated or by repeating the flag.
-- **Close**: `glab issue close <number>`. `glab issue close` does not accept a closing comment, so post the explanation first with `glab issue note <number> --message "..."`, then close.
-- **Merge requests**: GitLab calls PRs "merge requests". Use `glab mr create`, `glab mr view`, `glab mr note`, etc. — the same shape as `gh pr ...` with `mr` in place of `pr` and `note`/`--message` in place of `comment`/`--body`.
+- **创建 issue**：`glab issue create --title "..." --description "..."`。多行描述使用 heredoc。传入 `--description -` 可打开编辑器。
+- **读取 issue**：`glab issue view <number> --comments`。用 `-F json` 获取机器可读的输出。
+- **列出 issue**：`glab issue list -F json`，配合适当的 `--label` 过滤器。
+- **在 issue 上评论**：`glab issue note <number> --message "..."`。GitLab 把评论称为「note」。
+- **应用 / 移除标签**：`glab issue update <number> --label "..."` / `--unlabel "..."`。多个标签可以用逗号分隔，或通过重复该 flag 指定。
+- **关闭**：`glab issue close <number>`。`glab issue close` 不接受关闭评论，所以先用 `glab issue note <number> --message "..."` 发布说明，再关闭。
+- **Merge request**：GitLab 把 PR 称为「merge request」。使用 `glab mr create`、`glab mr view`、`glab mr note` 等——形态与 `gh pr ...` 相同，只是用 `mr` 代替 `pr`，用 `note`/`--message` 代替 `comment`/`--body`。
 
-Infer the repo from `git remote -v` — `glab` does this automatically when run inside a clone.
+从 `git remote -v` 推断仓库——`glab` 在克隆体内运行时会自动完成这一点。
 
-## Merge requests as a triage surface
+## Merge request 作为 triage 面
 
-**MRs as a request surface: no.** _(Set to `yes` if this repo treats external merge requests as feature requests; `/triage` reads this flag.)_
+**MR 作为请求来源：否。** _(如果本仓库把外部 merge request 视为功能请求，设为 `yes`；`/triage` 会读取此标志。)_
 
-When set to `yes`, MRs run through the same labels and states as issues, using the `glab mr` equivalents:
+设为 `yes` 时，MR 会走与 issue 相同的标签和状态，使用 `glab mr` 等价命令：
 
-- **Read an MR**: `glab mr view <number> --comments` and `glab mr diff <number>` for the diff.
-- **List external MRs for triage**: `glab mr list -F json`, then keep only MRs whose author is not a project member/owner (a contributor's MR, not a maintainer's in-flight work).
-- **Comment / label / close**: `glab mr note`, `glab mr update --label`/`--unlabel`, `glab mr close`.
+- **读取 MR**：`glab mr view <number> --comments`，以及用 `glab mr diff <number>` 查看 diff。
+- **列出待 triage 的外部 MR**：`glab mr list -F json`，然后只保留作者不是项目成员 / 所有者的 MR（贡献者的 MR，而非维护者进行中的工作）。
+- **评论 / 打标签 / 关闭**：`glab mr note`、`glab mr update --label`/`--unlabel`、`glab mr close`。
 
-Unlike GitHub, GitLab numbers issues and MRs separately, so `#42` is unambiguous once you know which surface the maintainer means.
+与 GitHub 不同，GitLab 对 issue 和 MR 分别编号，所以一旦你知道维护者指的是哪个面，`#42` 就没有歧义。
 
-## When a skill says "publish to the issue tracker"
+## 当某个技能说「发布到 issue 跟踪器」
 
-Create a GitLab issue.
+创建一个 GitLab issue。
 
-## When a skill says "fetch the relevant ticket"
+## 当某个技能说「获取相关工单」
 
-Run `glab issue view <number> --comments`.
+运行 `glab issue view <number> --comments`。

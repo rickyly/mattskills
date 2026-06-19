@@ -1,16 +1,16 @@
-Skills are organized into bucket folders under `skills/`:
+技能按分组目录组织，位于 `skills/` 下：
 
-- `engineering/` — daily code work
-- `productivity/` — daily non-code workflow tools
-- `misc/` — kept around but rarely used
-- `personal/` — tied to my own setup, not promoted
-- `in-progress/` — drafts not yet ready to ship
-- `deprecated/` — no longer used
+- `engineering/` — 日常代码工作
+- `productivity/` — 日常非代码工作流工具
+- `misc/` — 留着但很少用
+- `personal/` — 与我自己的环境绑定，不对外推广
+- `in-progress/` — 尚未就绪、不会发布的草稿
+- `deprecated/` — 不再使用
 
-Every skill in `engineering/`, `productivity/`, or `misc/` must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`. Skills in `personal/`, `in-progress/`, and `deprecated/` must not appear in either.
+`engineering/`、`productivity/` 或 `misc/` 中的每个技能都必须在顶层 `README.md` 中有引用，并在 `.claude-plugin/plugin.json` 中有对应条目。`personal/`、`in-progress/` 和 `deprecated/` 中的技能不得出现在两者中的任何一个里。
 
-Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
+顶层 `README.md` 中的每个技能条目都必须把技能名链接到其 `SKILL.md`。
 
-Each bucket folder has a `README.md` that lists every skill in the bucket with a one-line description, with the skill name linked to its `SKILL.md`. Bucket `README.md`s and the top-level `README.md` group entries into **User-invoked** and **Model-invoked**.
+每个分组目录都有一个 `README.md`，列出该分组中的每个技能并附一行描述，技能名链接到其 `SKILL.md`。分组目录的 `README.md` 和顶层 `README.md` 把条目分为「用户触发」和「模型触发」两组。
 
-Every `SKILL.md` is either user-invoked (`disable-model-invocation: true`, reachable only by the human) or model-invoked (model- or user-reachable). For the full definitions, description conventions, and why a user-invoked skill can invoke model-invoked skills but never another user-invoked one, see [docs/invocation.md](./docs/invocation.md).
+每个 `SKILL.md` 要么是用户触发（`disable-model-invocation: true`，只有人类可达），要么是模型触发（模型或用户均可达）。完整定义、描述约定，以及为什么用户触发的技能可以调用模型触发的技能、却永远无法调用另一个用户触发的技能，参见 [docs/invocation.md](./docs/invocation.md)。

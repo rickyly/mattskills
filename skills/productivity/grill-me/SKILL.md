@@ -1,7 +1,7 @@
 ---
 name: grill-me
-description: A relentless interview to sharpen a plan or design.
+description: 通过不留情面的追问打磨一个计划或设计。
 disable-model-invocation: true
 ---
 
-Run a `/grilling` session.
+运行一次 `/grilling` 会话。

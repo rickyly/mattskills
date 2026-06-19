@@ -1,36 +1,36 @@
 ---
 name: to-prd
-description: Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
+description: 把当前对话变成一份 PRD 并发布到项目 issue 跟踪器——无需访谈，只综合你们已经讨论过的内容。
 disable-model-invocation: true
 ---
 
-This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
+这个技能接收当前对话上下文和对代码库的理解，产出一份 PRD。不要访谈用户——只综合你已经知道的内容。
 
-The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
+issue 跟踪器和 triage 标签词汇应当已经提供给你——如果没有，运行 `/setup-matt-pocock-skills`。
 
-## Process
+## 流程
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect any ADRs in the area you're touching.
+1. 探索仓库以理解代码库的当前状态（如果你还没这么做的话）。在整份 PRD 中使用项目领域术语表的词汇，并尊重你所改动区域内的任何 ADR。
 
-2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
+2. 勾勒出你打算用来测试该功能的接缝（seam）。应当优先使用已有的接缝，而非新建。使用尽可能高层的接缝。如果需要新接缝，在你能达到的最高点提出它们。代码库中跨越的接缝越少越好——理想数量是一个。
 
-Check with the user that these seams match their expectations.
+   与用户确认这些接缝是否符合他们的预期。
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. 用下面的模板写 PRD，然后把它发布到项目 issue 跟踪器。打上 `ready-for-agent` triage 标签——无需额外 triage。
 
 <prd-template>
 
 ## Problem Statement
 
-The problem that the user is facing, from the user's perspective.
+用户正面临的问题，从用户的视角出发。
 
 ## Solution
 
-The solution to the problem, from the user's perspective.
+问题的解决方案，从用户的视角出发。
 
 ## User Stories
 
-A LONG, numbered list of user stories. Each user story should be in the format of:
+一份 **长长的** 编号用户故事列表。每条用户故事应采用如下格式：
 
 1. As an <actor>, I want a <feature>, so that <benefit>
 
@@ -38,38 +38,38 @@ A LONG, numbered list of user stories. Each user story should be in the format o
 1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
 </user-story-example>
 
-This list of user stories should be extremely extensive and cover all aspects of the feature.
+这份用户故事列表应当极其详尽，覆盖该功能的所有方面。
 
 ## Implementation Decisions
 
-A list of implementation decisions that were made. This can include:
+一份已做出的实现决策列表。可以包括：
 
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
+- 将要构建 / 修改的模块
+- 这些模块中将要修改的接口
+- 来自开发者的技术澄清
+- 架构决策
+- schema 变更
+- API 契约
+- 具体的交互
 
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+不要包含具体的文件路径或代码片段。它们可能很快就会过时。
 
-Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
+例外：如果某个原型产出的片段比散文更精确地编码了一个决策（状态机、reducer、schema、类型形状），就把它内联在相关决策中，并简要注明它来自一个原型。修剪到富含决策的部分——不是一个可运行的演示，只是关键的几处。
 
 ## Testing Decisions
 
-A list of testing decisions that were made. Include:
+一份已做出的测试决策列表。包括：
 
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
+- 描述什么构成一个好测试（只测试外部行为，不测试实现细节）
+- 哪些模块将被测试
+- 测试的前人经验（即代码库中类似类型的测试）
 
 ## Out of Scope
 
-A description of the things that are out of scope for this PRD.
+描述本 PRD 范围之外的事项。
 
 ## Further Notes
 
-Any further notes about the feature.
+关于该功能的任何补充说明。
 
 </prd-template>

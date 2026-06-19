@@ -1,6 +1,6 @@
-# Personal
+# 个人
 
-Skills tied to my own setup, not promoted in the plugin.
+与我自己的环境绑定、不在插件中推广的技能。
 
-- **[edit-article](./edit-article/SKILL.md)** — Edit and improve articles by restructuring sections, improving clarity, and tightening prose.
-- **[obsidian-vault](./obsidian-vault/SKILL.md)** — Search, create, and manage notes in an Obsidian vault with wikilinks and index notes.
+- **[edit-article](./edit-article/SKILL.md)** — 通过重组章节、提升清晰度与精炼文字来编辑和改进文章。
+- **[obsidian-vault](./obsidian-vault/SKILL.md)** — 在 Obsidian vault 中搜索、创建和管理笔记，支持 wikilink 与索引笔记。

@@ -1,27 +1,27 @@
 ---
 name: ubiquitous-language
-description: Extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to define domain terms, build a glossary, harden terminology, create a ubiquitous language, or mentions "domain model" or "DDD".
+description: 从当前对话中提取一份 DDD 风格的通用语言术语表，标记歧义并提出规范术语。保存到 UBIQUITOUS_LANGUAGE.md。当用户想要定义领域术语、构建术语表、强化术语、创建通用语言，或提到 "domain model" 或 "DDD" 时使用。
 disable-model-invocation: true
 ---
 
-# Ubiquitous Language
+# 通用语言
 
-Extract and formalize domain terminology from the current conversation into a consistent glossary, saved to a local file.
+从当前对话中提取并形式化领域术语，整理成一份一致的术语表，保存到本地文件。
 
-## Process
+## 流程
 
-1. **Scan the conversation** for domain-relevant nouns, verbs, and concepts
-2. **Identify problems**:
-   - Same word used for different concepts (ambiguity)
-   - Different words used for the same concept (synonyms)
-   - Vague or overloaded terms
-3. **Propose a canonical glossary** with opinionated term choices
-4. **Write to `UBIQUITOUS_LANGUAGE.md`** in the working directory using the format below
-5. **Output a summary** inline in the conversation
+1. **扫描对话**，寻找与领域相关的名词、动词和概念
+2. **识别问题**：
+   - 同一个词用于不同概念（歧义）
+   - 不同的词用于同一个概念（同义词）
+   - 含糊或被赋予过多含义的术语
+3. **提出一份规范术语表**，给出有主张的术语选择
+4. **写入工作目录中的 `UBIQUITOUS_LANGUAGE.md`**，使用下面的格式
+5. **在对话中内联输出一份摘要**
 
-## Output Format
+## 输出格式
 
-Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
+按以下结构编写 `UBIQUITOUS_LANGUAGE.md` 文件：
 
 ```md
 # Ubiquitous Language
@@ -57,16 +57,16 @@ Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
 - "account" was used to mean both **Customer** and **User** — these are distinct concepts: a **Customer** places orders, while a **User** is an authentication identity that may or may not represent a **Customer**.
 ```
 
-## Rules
+## 规则
 
-- **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
-- **Flag conflicts explicitly.** If a term is used ambiguously in the conversation, call it out in the "Flagged ambiguities" section with a clear recommendation.
-- **Only include terms relevant for domain experts.** Skip the names of modules or classes unless they have meaning in the domain language.
-- **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
-- **Show relationships.** Use bold term names and express cardinality where obvious.
-- **Only include domain terms.** Skip generic programming concepts (array, function, endpoint) unless they have domain-specific meaning.
-- **Group terms into multiple tables** when natural clusters emerge (e.g. by subdomain, lifecycle, or actor). Each group gets its own heading and table. If all terms belong to a single cohesive domain, one table is fine — don't force groupings.
-- **Write an example dialogue.** A short conversation (3-5 exchanges) between a dev and a domain expert that demonstrates how the terms interact naturally. The dialogue should clarify boundaries between related concepts and show terms being used precisely.
+- **要有主张。** 当同一个概念存在多个词时，选出最佳的那个，并把其余的列为应避免的别名。
+- **明确标记冲突。** 如果某个术语在对话中被歧义地使用，在 "Flagged ambiguities" 一节中点明，并给出清晰的建议。
+- **只收录对领域专家有意义的术语。** 跳过模块名或类名，除非它们在领域语言中具有含义。
+- **保持定义紧凑。** 最多一句话。定义它**是什么**，而不是它**做什么**。
+- **展示关系。** 使用加粗的术语名，并在显而易见处表达基数。
+- **只收录领域术语。** 跳过通用编程概念（array、function、endpoint），除非它们具有领域特定的含义。
+- **当自然聚类出现时，把术语分成多张表**（例如按子域、生命周期或参与者）。每个分组各有自己的标题和表格。如果所有术语都属于单一内聚的领域，一张表也可以 —— 不要强行分组。
+- **写一段示例对话。** 一段 dev 与领域专家之间的简短对话（3-5 轮），自然地演示这些术语如何相互配合。该对话应当厘清相关概念之间的边界，并展示术语被精确使用。
 
 <example>
 
@@ -82,12 +82,12 @@ Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
 
 </example>
 
-## Re-running
+## 重新运行
 
-When invoked again in the same conversation:
+当在同一对话中再次触发时：
 
-1. Read the existing `UBIQUITOUS_LANGUAGE.md`
-2. Incorporate any new terms from subsequent discussion
-3. Update definitions if understanding has evolved
-4. Re-flag any new ambiguities
-5. Rewrite the example dialogue to incorporate new terms
+1. 读取现有的 `UBIQUITOUS_LANGUAGE.md`
+2. 纳入后续讨论中出现的任何新术语
+3. 如果理解已经演进，更新定义
+4. 重新标记任何新出现的歧义
+5. 重写示例对话以纳入新术语

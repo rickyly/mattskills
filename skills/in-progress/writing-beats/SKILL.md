@@ -1,52 +1,52 @@
 ---
 name: writing-beats
-description: Shape an article as a journey of beats, choose-your-own-adventure style. The user picks a starting beat from the raw material, you write only that beat, then offer options for where to pivot next, beat by beat, until the article reaches a natural end. Use when the user has raw material and wants to assemble it as a narrative rather than an argument.
+description: 以一段段节拍（beat）的旅程来塑造文章，采用「选择你自己的冒险」（choose-your-own-adventure）的方式。用户从原始素材中挑一个起始节拍，你只写那一个节拍，然后给出接下来转向何处的选项，一拍接一拍，直到文章抵达自然的结尾。当用户手上有原始素材，并且想把它组装成一段叙事而非一篇论证时使用。
 ---
 
 <what-to-do>
 
-The user has passed (or will pass) a markdown file of raw material.
+用户已经传入（或将要传入）一份装着原始素材的 markdown 文件。
 
-If the user did not say where to save the article, ask once and remember the path.
+如果用户没说文章保存到哪里，问一次并记住路径。
 
-Then run a beat-by-beat journey:
+然后运行一段逐拍推进的旅程：
 
-1. Write 2–3 candidate **starting beats**, drawn from the raw material. Each is a different entry point into the article. Show the user the beats before writing it to the article file. The user picks one. Preview what beats that might lead to once written - as if the user is seeing a little way down the path.
-2. Once the user picks a starting beat, write **only that beat** to the article file. A beat may be one sentence or several paragraphs — whatever that beat naturally is. Stop there.
-3. Re-read the article file from disk. Then offer 2–3 candidate **next beats** — different directions the journey could pivot to from where the article now stands.
-4. Loop steps 2–4 until the article reaches a natural end.
+1. 写 2—3 个候选的**起始节拍**，取自原始素材。每个都是进入文章的一个不同入口。在把它写入文章文件之前，先把这些节拍展示给用户。用户挑一个。预览一旦写下这一拍可能引向哪些节拍——就像让用户沿着路径往前望一小段。
+2. 用户一旦挑定起始节拍，就**只把那一个节拍**写入文章文件。一个节拍可以是一句话或好几段——这一拍自然是什么就是什么。到此为止。
+3. 从磁盘重新读取文章文件。然后给出 2—3 个候选的**下一拍**——从文章当前所处的位置，旅程可以转向的不同方向。
+4. 循环第 2—4 步，直到文章抵达自然的结尾。
 
 </what-to-do>
 
 <supporting-info>
 
-## What is a beat
+## 什么是节拍
 
-A beat is one move in the journey. It does one thing — sets a scene, lands a point, asks a question, drops an aside, twists the angle. Then it stops, leaving the reader at a place where the next beat can pivot.
+一个节拍是旅程中的一步。它只做一件事——铺设一个场景、落定一个观点、抛出一个问题、插入一句旁白、扭转一个角度。然后它停下，把读者留在一个下一拍可以转向的位置。
 
-A beat is sized by what it needs:
+一个节拍的大小由它所需的来决定：
 
-- A single sentence if that's all the move is ("And then nothing happened for three weeks.").
-- A short paragraph if the move needs setup.
-- Multiple paragraphs if the beat is a self-contained vignette, argument, or example.
+- 如果这一步就只是一句话，那就一句话（"And then nothing happened for three weeks."）。
+- 如果这一步需要铺垫，那就一小段。
+- 如果这一拍是一个自成一体的小品、论证或例子，那就多段。
 
-If a "beat" needs five paragraphs and three subheadings, it's not a beat — it's two beats glued together. Split it.
+如果一个「节拍」需要五段加三个小标题，它就不是一个节拍——它是两个节拍粘在了一起。拆开它。
 
-## Writing one beat
+## 写一个节拍
 
-Once a beat is picked, write _that beat only_ to the article file. Do not write the next beat.
+一旦挑定了一个节拍，就只把_那一个节拍_写入文章文件。不要写下一拍。
 
-Pull material from the raw pile to populate the beat. You can paraphrase, split, recombine, or quote. The pile is a quarry.
+从原始素材堆里抽取材料来填充这一拍。你可以转述、拆分、重组或引用。这堆素材是一座采石场。
 
-## Ending the journey
+## 结束旅程
 
-The article ends when the journey is complete — not when the pile is empty. Most piles will have leftover fragments that don't make it in. That is fine; that is the point of having more raw material than you need.
+文章在旅程完成时结束——而不是在素材堆见底时结束。大多数素材堆都会有剩下的、没进入文章的碎片。这没关系；备的原始素材多于所需，正是其用意所在。
 
-## Writing rhythm
+## 写作节奏
 
-- Append one beat at a time. Never write ahead.
-- Re-read the article file from disk before every write. Preserve user edits absolutely.
-- If the user edits a previous beat substantially, let it change what comes next.
-- If the user says "rewrite that beat" or "go back and try a different beat 3", do it — edit in place, leave the rest alone.
+- 一次只追加一个节拍。绝不提前写。
+- 每次写入之前都从磁盘重新读取文章文件。绝对保留用户的编辑。
+- 如果用户大幅改动了某个先前的节拍，就让它改变后续内容。
+- 如果用户说「rewrite that beat」或「go back and try a different beat 3」，就照做——就地编辑，其余不动。
 
 </supporting-info>

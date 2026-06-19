@@ -1,20 +1,20 @@
 ---
 name: decision-mapping
-description: Turn a loose idea into a sequenced map of investigation tickets, then drive them to resolution one at a time.
+description: 把一个松散的想法转化为一张排好序的调查工单地图，然后逐个推进直至解决。
 disable-model-invocation: true
 ---
 
-This skill is invoked when a loose idea requires more than one agent session to turn into a plan. It creates a stateful decision map in a markdown file, and drives the user through a sequence of tickets to resolve the open questions - which may require either prototyping, research or discussion.
+当一个松散的想法需要不止一个代理会话才能变成计划时，调用本技能。它会在一个 markdown 文件中创建一张有状态的决策地图，并驱动用户走过一连串工单，去解决那些开放的问题——这些问题可能需要原型设计、研究或讨论中的某一种。
 
-## The Decision Map
+## 决策地图
 
-The decision map is a single compact Markdown file, one per planning effort, git-tracked alongside the project. It is the canonical artifact — the **whole map is loaded as context into every session**, so it must stay compact.
+决策地图是一个紧凑的 Markdown 文件，每一项规划工作对应一份，随项目一起纳入 git 跟踪。它是规范产物——**整张地图会作为上下文加载进每一个会话**，所以它必须保持紧凑。
 
-Assets created during tickets should be linked to from the map, not duplicated within it.
+工单期间创建的资产应当从地图中链接出去，而不是在地图内复制一份。
 
-### Structure
+### 结构
 
-Numbered entries ("tickets"), each its own section keyed by its number:
+带编号的条目（「工单」），每个工单各自成节，以其编号作为键：
 
 ```markdown
 ## #1: Relational Or Non-Relational Database?
@@ -31,54 +31,54 @@ Type: Research | Prototype | Discuss
 <answer-here>
 ```
 
-Each ticket must be sized to one 100K token agent session.
+每个工单的大小都必须能容纳进一个 100K token 的代理会话。
 
-## Ticket Types
+## 工单类型
 
-There are three types of tickets:
+工单有三种类型：
 
-- **Research**: Reading documentation, third-party API's, or local resources like knowledge bases. Creates a markdown summary as an asset. Use this when knowledge outside the current working directory is required.
-- **Prototype**: Writing UI or logic code to test a hypothesis, or to explore a design space. Uses the /prototype skill. Creates a prototype as an asset. Use this when "how should it look" or "how should it behave" is the key question.
-- **Discuss**: Conversation with the agent. Uses the /grilling and /domain-modelling skills. The default case.
+- **Research**：阅读文档、第三方 API 或知识库等本地资源。会创建一份 markdown 摘要作为资产。当需要当前工作目录之外的知识时使用。
+- **Prototype**：编写 UI 或逻辑代码来检验某个假设，或探索某个设计空间。使用 /prototype 技能。会创建一个原型作为资产。当「它应该长什么样」或「它应该如何表现」是关键问题时使用。
+- **Discuss**：与代理对话。使用 /grilling 和 /domain-modelling 技能。这是默认情形。
 
-## Fog of war
+## 战争迷雾
 
-The map is _deliberately_ incomplete beyond the frontier. Your job is to investigate the frontier, and to resolve tickets in order to push the frontier forward. Push back the fog of war, one node at a time.
+地图在前沿之外是_刻意_不完整的。你的工作是探查前沿，并通过解决工单来把前沿向前推进。一次推开一个节点的战争迷雾。
 
-At some point, the fog of war should have been pushed back far enough that the path to the finish line is clear. At that point, no more tickets will be required and the decision map can be considered 'done'.
+到某个时刻，战争迷雾应当已经被推得足够远，通往终点线的路径变得清晰。届时将不再需要更多工单，决策地图就可以视作「完成」了。
 
-## Invocation
+## 调用方式
 
-There are two ways this skill can be invoked: **bootstrap** and **resume**.
+本技能有两种调用方式：**bootstrap** 与 **resume**。
 
 ### Bootstrap
 
-User invokes with a loose idea.
+用户带着一个松散的想法发起调用。
 
-1. Run a /grilling and /domain-modelling session to surface the open decisions.
-2. Write a new decision map — mostly fog, frontier identified, trivially-decidable entries resolved inline.
-3. Stop. Map-building is one session's work; do not also resolve tickets.
+1. 运行一场 /grilling 和 /domain-modelling 会话，把开放的决策浮现出来。
+2. 写一张新的决策地图——大部分是迷雾，前沿已识别，可轻易决定的条目就地解决。
+3. 停下。搭建地图是一个会话的工作量；不要同时去解决工单。
 
 ### Resume
 
-User invokes with a path to an existing map and a ticket number.
+用户带着一张现有地图的路径和一个工单编号发起调用。
 
-1. Load the **whole map** as context.
-2. Run a session to resolve the ticket, invoking skills as needed. If in doubt, use `/grilling` and `/domain-modelling`.
-3. Record what the session resolved in the ticket's body.
-4. Add newly-discovered tickets (with correct `blocked_by` edges).
-5. Stop.
+1. 把**整张地图**作为上下文加载。
+2. 运行一个会话来解决该工单，按需调用技能。拿不准时，使用 `/grilling` 和 `/domain-modelling`。
+3. 在工单正文中记录该会话解决了什么。
+4. 添加新发现的工单（带上正确的 `blocked_by` 边）。
+5. 停下。
 
-If the decisions made invalidate other parts of the map, update or delete those nodes.
+如果做出的决策使地图的其他部分失效，就更新或删除那些节点。
 
-## Parallelism
+## 并行
 
-The user may choose to run tickets in parallel, so expect other agents to make changes to the map.
+用户可能选择并行运行多个工单，所以要预期其他代理也会改动这张地图。
 
-## Skipping The Decision Map
+## 跳过决策地图
 
-Many times, the initial grilling will result in no fog of war. No unresolved tickets. Nothing to do, except implement.
+很多时候，最初的拷问不会产生任何战争迷雾。没有待解决的工单。除了实现之外无事可做。
 
-In those situations, you should offer the user the chance to skip the decision map - since the decision map is only needed if multi-session decisions need to be made.
+在那些情况下，你应当给用户一个跳过决策地图的机会——因为决策地图只在需要做跨会话决策时才有用。
 
-If they skip it, you should recommend either implementing directly or using `/to-prd` to schedule a multi-session implementation.
+如果他们跳过，你应当建议要么直接实现，要么使用 `/to-prd` 来安排一次跨会话的实现。

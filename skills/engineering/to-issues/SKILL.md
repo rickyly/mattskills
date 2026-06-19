@@ -1,71 +1,71 @@
 ---
 name: to-issues
-description: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.
+description: 用 tracer-bullet 垂直切片，把计划、规格或 PRD 拆成可在项目 issue 跟踪器上独立认领的 issue。
 disable-model-invocation: true
 ---
 
-# To Issues
+# 拆分为 Issue
 
-Break a plan into independently-grabbable issues using vertical slices (tracer bullets).
+用垂直切片（tracer bullet）把计划拆成可独立认领的 issue。
 
-The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
+issue 跟踪器和 triage 标签词汇应当已经提供给你——如果没有，运行 `/setup-matt-pocock-skills`。
 
-## Process
+## 流程
 
-### 1. Gather context
+### 1. 收集上下文
 
-Work from whatever is already in the conversation context. If the user passes an issue reference (issue number, URL, or path) as an argument, fetch it from the issue tracker and read its full body and comments.
+从对话上下文中已有的内容入手。如果用户把一个 issue 引用（issue 编号、URL 或路径）作为参数传入，从 issue 跟踪器获取它，并读取其完整正文和评论。
 
-### 2. Explore the codebase (optional)
+### 2. 探索代码库（可选）
 
-If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should use the project's domain glossary vocabulary, and respect ADRs in the area you're touching.
+如果你还没有探索过代码库，现在就去探索，以理解代码的当前状态。issue 标题和描述应当使用项目领域术语表的词汇，并尊重你所改动区域内的 ADR。
 
-Look for opportunities to prefactor the code to make the implementation easier. "Make the change easy, then make the easy change."
+寻找对代码做预重构（prefactor）以让实现更容易的机会。“先让改动变容易，再做那个容易的改动。”
 
-### 3. Draft vertical slices
+### 3. 起草垂直切片
 
-Break the plan into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+把计划拆成 **tracer bullet** issue。每个 issue 都是一个薄薄的垂直切片，端到端贯穿 **所有** 集成层，而 **不是** 单一层的水平切片。
 
 <vertical-slice-rules>
 
-- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
-- A completed slice is demoable or verifiable on its own
-- Any prefactoring should be done first
+- 每个切片交付一条狭窄但 **完整** 的路径，贯穿每一层（schema、API、UI、测试）
+- 一个完成的切片本身可演示或可验证
+- 任何预重构都应当先做
 
 </vertical-slice-rules>
 
-### 4. Quiz the user
+### 4. 向用户提问
 
-Present the proposed breakdown as a numbered list. For each slice, show:
+把提议的拆分方案以编号列表呈现。对每个切片，展示：
 
-- **Title**: short descriptive name
-- **Blocked by**: which other slices (if any) must complete first
-- **User stories covered**: which user stories this addresses (if the source material has them)
+- **Title**：简短的描述性名称
+- **Blocked by**：哪些其他切片（如果有）必须先完成
+- **User stories covered**：这个切片处理了哪些用户故事（如果源材料里有的话）
 
-Ask the user:
+询问用户：
 
-- Does the granularity feel right? (too coarse / too fine)
-- Are the dependency relationships correct?
-- Should any slices be merged or split further?
+- 粒度感觉合适吗？（太粗 / 太细）
+- 依赖关系正确吗？
+- 是否应该合并或进一步拆分某些切片？
 
-Iterate until the user approves the breakdown.
+反复迭代，直到用户批准拆分方案。
 
-### 5. Publish the issues to the issue tracker
+### 5. 把 issue 发布到 issue 跟踪器
 
-For each approved slice, publish a new issue to the issue tracker. Use the issue body template below. These issues are considered ready for AFK agents, so publish them with the correct triage label unless instructed otherwise.
+对每个获批的切片，向 issue 跟踪器发布一个新 issue。使用下面的 issue 正文模板。这些 issue 被视为已为 AFK 代理准备就绪，因此除非另有指示，发布时打上正确的 triage 标签。
 
-Publish issues in dependency order (blockers first) so you can reference real issue identifiers in the "Blocked by" field.
+按依赖顺序发布 issue（先发阻塞者），这样你就能在 “Blocked by” 字段中引用真实的 issue 标识符。
 
 <issue-template>
 ## Parent
 
-A reference to the parent issue on the issue tracker (if the source was an existing issue, otherwise omit this section).
+对 issue 跟踪器上父 issue 的引用（如果源材料是一个已有的 issue，否则省略本节）。
 
 ## What to build
 
-A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation.
+对这个垂直切片的简明描述。描述端到端的行为，而非逐层的实现。
 
-Avoid specific file paths or code snippets — they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it here and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
+避免具体的文件路径或代码片段——它们很快就会过时。例外：如果某个原型产出的片段比散文更精确地编码了一个决策（状态机、reducer、schema、类型形状），就把它内联在这里，并简要注明它来自一个原型。修剪到富含决策的部分——不是一个可运行的演示，只是关键的几处。
 
 ## Acceptance criteria
 
@@ -75,10 +75,10 @@ Avoid specific file paths or code snippets — they go stale fast. Exception: if
 
 ## Blocked by
 
-- A reference to the blocking ticket (if any)
+- 对阻塞工单的引用（如果有）
 
-Or "None - can start immediately" if no blockers.
+否则填 “None - can start immediately”，如果没有阻塞者。
 
 </issue-template>
 
-Do NOT close or modify any parent issue.
+不要关闭或修改任何父 issue。

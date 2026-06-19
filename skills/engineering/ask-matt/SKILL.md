@@ -1,61 +1,61 @@
 ---
 name: ask-matt
-description: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
+description: 询问哪个技能或哪条流程适合你当前的情境。它是本仓库中用户触发技能的路由器。
 disable-model-invocation: true
 ---
 
 # Ask Matt
 
-You don't remember every skill, so ask.
+你记不住每一个技能，所以直接问。
 
-A **flow** is a path through the skills. Most paths run along one **main flow**, and two **on-ramps** merge onto it. Everything else is standalone.
+**流程（flow）** 是一条穿过各个技能的路径。大多数路径沿着同一条 **主流程** 走，另有两条 **入口匝道** 汇入其中。其余的都是独立的。
 
-## The main flow: idea → ship
+## 主流程：idea → ship
 
-The route most work travels. You have an idea and want it built.
+绝大多数工作所走的路线。你有一个想法，想把它做出来。
 
-1. **`/grill-with-docs`** — sharpen the idea by interview. Start here when you **have a codebase**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No codebase? Use `/grill-me` — see Standalone.)
-2. **Branch — can you settle every question in conversation?** If a question needs a runnable answer (state, business logic, a UI you have to see), detour through a prototype, bridged by **`/handoff`** in both directions (see Crossing sessions):
-   - **`/handoff`** out, then open a fresh session against that file,
-   - **`/prototype`** to answer the question with throwaway code,
-   - **`/handoff`** back what you learned, and reference it from the original idea thread.
-3. **Branch — is this a multi-session build?**
-   - **Yes** → **`/to-prd`** (turn the thread into a PRD) → **`/to-issues`** (split the PRD into independently-grabbable issues). Because the issues are independent, **clear context between each one**: start a fresh session per issue and kick off **`/implement`** by passing it the PRD and the single issue to work on.
-   - **No** → **`/implement`** right here, in the same context window.
+1. **`/grill-with-docs`** —— 通过访谈打磨想法。当你 **已有代码库** 时从这里开始：它是有状态的，会把学到的东西保留在 `CONTEXT.md` 和 ADR 中。（没有代码库？用 `/grill-me` —— 见「独立技能」。）
+2. **分支 —— 每个问题都能在对话中敲定吗？** 如果某个问题需要可运行的答案（状态、业务逻辑、必须亲眼看到的 UI），就绕道去做原型，两个方向都用 **`/handoff`** 衔接（见「跨会话」）：
+   - **`/handoff`** 导出，然后针对那个文件开启一个全新会话，
+   - **`/prototype`** 用一次性代码回答这个问题，
+   - **`/handoff`** 把学到的东西带回来，并在最初的想法线程里引用它。
+3. **分支 —— 这是一次跨多个会话的构建吗？**
+   - **是** → **`/to-prd`**（把线程变成 PRD）→ **`/to-issues`**（把 PRD 拆成可被独立认领的 issue）。因为这些 issue 彼此独立，**每处理一个就清空上下文**：每个 issue 开一个全新会话，并通过把 PRD 和要处理的那个单独 issue 传给 **`/implement`** 来启动它。
+   - **否** → 就在这里、在同一个上下文窗口里 **`/implement`**。
 
-### Context hygiene
+### 上下文卫生
 
-Keep steps 1–3 in **one unbroken context window** — don't compact or clear until after `/to-issues` — so the grilling, PRD, and issues all build on the same thinking. Each `/implement` then starts fresh, working from the issue.
+把第 1–3 步保持在 **一个不间断的上下文窗口** 里 —— 在 `/to-issues` 之前不要 compact 或清空 —— 这样拷问、PRD 和 issue 才都建立在同一套思考之上。之后每次 `/implement` 都重新开始，从 issue 出发工作。
 
-The limit on this is the **[smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone)**: the window (~120k tokens on state-of-the-art models) within which the model still reasons sharply. If a session approaches it before `/to-issues`, don't push on degraded — `/handoff` and continue in a fresh thread.
+它的上限是 **[smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone)**：那个窗口（在最先进的模型上约 120k tokens）之内，模型仍能敏锐地推理。如果某个会话在 `/to-issues` 之前就逼近这个上限，不要带着退化的状态硬推 —— 用 `/handoff` 并在一个全新线程里继续。
 
-## On-ramps
+## 入口匝道
 
-A starting situation that generates work, then merges onto the main flow.
+一种会产生工作的起始情境，随后汇入主流程。
 
-- **Bugs and requests piling up** → **`/triage`**. It moves issues through triage roles and produces agent-ready issues, which **`/implement`** later picks up.
+- **bug 和需求堆积起来** → **`/triage`**。它让 issue 流经各个分诊角色，产出可供代理处理的 issue，之后由 **`/implement`** 接手。
 
-  Triage is only for issues **you didn't create** — bug reports, incoming feature requests, anything that arrives raw. Issues that `/to-issues` produced are already agent-ready, so **don't triage them**.
+  分诊只针对 **不是你创建的** issue —— bug 报告、传入的特性请求，任何原始到来的东西。`/to-issues` 产出的 issue 已经可供代理处理，所以 **不要对它们做分诊**。
 
-## Codebase health
+## 代码库健康
 
-Not feature work — upkeep.
+不是特性工作 —— 而是日常维护。
 
-- **`/improve-codebase-architecture`** — run whenever you have a spare moment to keep the codebase good for agents to operate in. It surfaces deepening opportunities; picking one _generates an idea_ you can take into the main flow at `/grill-with-docs`.
+- **`/improve-codebase-architecture`** —— 一有空闲就运行，让代码库始终保持对代理友好、便于其中操作。它会浮现出加深机会；挑选其中一个 _会产生一个想法_，你可以把它带进主流程的 `/grill-with-docs`。
 
-## Crossing sessions
+## 跨会话
 
-- **`/handoff`** — when a thread is full or you need to branch off (e.g. into a `/prototype` session), this compacts the conversation into a markdown file. You don't continue in place — you **open a new session and reference that file** to carry the context across. It's the bridge between context windows, in either direction. Use it when you want a **fresh session** but need the **current conversation preserved**.
-- **`/compact`** (built-in) — stay in the **same conversation**, letting the earlier turns be summarized. Use it at **intentional breaks between phases**, when you don't mind losing the verbatim history. Don't compact mid-phase — the agent can lose its way. `/handoff` forks; `/compact` continues.
+- **`/handoff`** —— 当一个线程满了，或者你需要分叉出去（例如进入一次 `/prototype` 会话）时，它会把对话压缩成一个 markdown 文件。你不是就地继续 —— 而是 **开启一个新会话并引用那个文件**，把上下文跨越带过去。它是上下文窗口之间的桥梁，双向皆可。当你想要一个 **全新会话** 却又需要 **保留当前对话** 时，选用它。
+- **`/compact`**（内置）—— 留在 **同一个对话** 里，让较早的轮次被摘要。在 **阶段之间有意的停顿处** 使用它，前提是你不介意丢失逐字的历史。不要在阶段中途 compact —— 代理可能会迷失方向。`/handoff` 是分叉；`/compact` 是继续。
 
-## Standalone
+## 独立技能
 
-Off the main flow entirely.
+完全在主流程之外。
 
-- **`/grill-me`** — the same relentless interview as `/grill-with-docs`, but for when you have **no codebase**. Stateless: it saves nothing locally, builds no `CONTEXT.md`. Reach for it to sharpen any plan or design that doesn't live in a repo.
-- **`/teach`** — learn a concept over multiple sessions, using the current directory as a stateful workspace.
-- **`/writing-great-skills`** — reference for writing and editing skills well.
+- **`/grill-me`** —— 与 `/grill-with-docs` 一样毫不留情的访谈，但用于你 **没有代码库** 时。无状态：它在本地不保存任何东西，也不构建 `CONTEXT.md`。当你要打磨任何不存在于仓库中的计划或设计时，选用它。
+- **`/teach`** —— 跨多个会话学习一个概念，把当前目录用作一个有状态的工作区。
+- **`/writing-great-skills`** —— 把技能写好、改好的参考。
 
-## Precondition
+## 前置条件
 
-**`/setup-matt-pocock-skills`** — run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.
+**`/setup-matt-pocock-skills`** —— 在你第一次走工程流程之前运行，以配置其他技能所假设的 issue 追踪器、分诊标签和文档布局。自定义的 issue 追踪器同样可用。

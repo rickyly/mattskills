@@ -1,34 +1,34 @@
-# Issue tracker: GitHub
+# Issue 跟踪器：GitHub
 
-Issues and PRDs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
+本仓库的 issue 和 PRD 以 GitHub issue 的形式存放。所有操作都使用 `gh` CLI。
 
-## Conventions
+## 约定
 
-- **Create an issue**: `gh issue create --title "..." --body "..."`. Use a heredoc for multi-line bodies.
-- **Read an issue**: `gh issue view <number> --comments`, filtering comments by `jq` and also fetching labels.
-- **List issues**: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'` with appropriate `--label` and `--state` filters.
-- **Comment on an issue**: `gh issue comment <number> --body "..."`
-- **Apply / remove labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
-- **Close**: `gh issue close <number> --comment "..."`
+- **创建 issue**：`gh issue create --title "..." --body "..."`。多行正文使用 heredoc。
+- **读取 issue**：`gh issue view <number> --comments`，用 `jq` 过滤评论，并同时获取标签。
+- **列出 issue**：`gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'`，配合适当的 `--label` 和 `--state` 过滤器。
+- **在 issue 上评论**：`gh issue comment <number> --body "..."`
+- **应用 / 移除标签**：`gh issue edit <number> --add-label "..."` / `--remove-label "..."`
+- **关闭**：`gh issue close <number> --comment "..."`
 
-Infer the repo from `git remote -v` — `gh` does this automatically when run inside a clone.
+从 `git remote -v` 推断仓库——`gh` 在克隆体内运行时会自动完成这一点。
 
-## Pull requests as a triage surface
+## Pull request 作为 triage 面
 
-**PRs as a request surface: no.** _(Set to `yes` if this repo treats external PRs as feature requests; `/triage` reads this flag.)_
+**PR 作为请求来源：否。** _(如果本仓库把外部 PR 视为功能请求，设为 `yes`；`/triage` 会读取此标志。)_
 
-When set to `yes`, PRs run through the same labels and states as issues, using the `gh pr` equivalents:
+设为 `yes` 时，PR 会走与 issue 相同的标签和状态，使用 `gh pr` 等价命令：
 
-- **Read a PR**: `gh pr view <number> --comments` and `gh pr diff <number>` for the diff.
-- **List external PRs for triage**: `gh pr list --state open --json number,title,body,labels,author,authorAssociation,comments` then keep only `authorAssociation` of `CONTRIBUTOR`, `FIRST_TIME_CONTRIBUTOR`, or `NONE` (drop `OWNER`/`MEMBER`/`COLLABORATOR`).
-- **Comment / label / close**: `gh pr comment`, `gh pr edit --add-label`/`--remove-label`, `gh pr close`.
+- **读取 PR**：`gh pr view <number> --comments`，以及用 `gh pr diff <number>` 查看 diff。
+- **列出待 triage 的外部 PR**：`gh pr list --state open --json number,title,body,labels,author,authorAssociation,comments`，然后只保留 `authorAssociation` 为 `CONTRIBUTOR`、`FIRST_TIME_CONTRIBUTOR` 或 `NONE` 的（丢弃 `OWNER`/`MEMBER`/`COLLABORATOR`）。
+- **评论 / 打标签 / 关闭**：`gh pr comment`、`gh pr edit --add-label`/`--remove-label`、`gh pr close`。
 
-GitHub shares one number space across issues and PRs, so a bare `#42` may be either — resolve with `gh pr view 42` and fall back to `gh issue view 42`.
+GitHub 在 issue 和 PR 之间共享同一个编号空间，所以一个裸的 `#42` 可能是其中任一种——用 `gh pr view 42` 解析，并回退到 `gh issue view 42`。
 
-## When a skill says "publish to the issue tracker"
+## 当某个技能说「发布到 issue 跟踪器」
 
-Create a GitHub issue.
+创建一个 GitHub issue。
 
-## When a skill says "fetch the relevant ticket"
+## 当某个技能说「获取相关工单」
 
-Run `gh issue view <number> --comments`.
+运行 `gh issue view <number> --comments`。

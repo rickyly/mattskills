@@ -4,51 +4,51 @@
 
 ### Patch Changes
 
-- [`d20ee26`](https://github.com/mattpocock/skills/commit/d20ee2684e2a9442698ac3c1e0f2c5b68c4cf296) Thanks [@mattpocock](https://github.com/mattpocock)! - Make the **`teach`** skill reuse-first. Lessons are now built from reusable **components** in `./assets/` — stylesheets, quiz widgets, simulators, diagram helpers. Reuse is the default: the agent reads `./assets/` before authoring a lesson, builds from what's there, and extracts anything new and reusable into a component rather than inlining it.
+- [`d20ee26`](https://github.com/mattpocock/skills/commit/d20ee2684e2a9442698ac3c1e0f2c5b68c4cf296) Thanks [@mattpocock](https://github.com/mattpocock)! - 让 **`teach`** 技能以复用为先。课程现在由 `./assets/` 中可复用的**组件**搭建而成——样式表、测验小组件、模拟器、图表辅助工具。复用是默认做法：agent 在编写课程之前先读取 `./assets/`，从已有的东西出发来搭建，并把任何新的、可复用的东西抽取成一个组件，而不是内联进去。
 
 ## 1.0.0
 
 ### Major Changes
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Add the **`ask-matt`** skill — a user-invoked router that points you at the right skill or flow for your situation.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 新增 **`ask-matt`** 技能——一个用户触发的路由器，为你的处境指向合适的技能或流程。
 
-  **Breaking:** `ask-matt` routes over the other user-invoked skills in this repo, so it expects them to be installed.
+  **Breaking:** `ask-matt` 在本仓库其他用户触发的技能之上做路由，因此它要求这些技能都已安装。
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Add the shared design skills and rewire existing skills onto them.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 新增共享的设计类技能，并把现有技能重新接入它们。
 
-  - New **`codebase-design`** skill — the deep-module vocabulary (module, interface, depth, seam, adapter) and the principles for putting a lot of behaviour behind a small interface. The language that previously lived in `improve-codebase-architecture/LANGUAGE.md` now lives here, generalized for reuse across skills.
-  - New **`domain-modeling`** skill — actively build and sharpen a project's domain model, stress-testing terms against the glossary and keeping `CONTEXT.md` and ADRs current.
-  - `improve-codebase-architecture` now draws its architecture vocabulary from `/codebase-design` and its domain model from `/domain-modeling`.
-  - `tdd` now leans on `/codebase-design` for interface-design guidance — its inline `deep-modules.md` / `interface-design.md` notes were removed in favour of the shared skill.
-  - `grill-with-docs` now builds the domain model inline via `/domain-modeling`.
+  - 新增 **`codebase-design`** 技能——深模块词汇表（module、interface、depth、seam、adapter）以及把大量行为藏在小接口背后的原则。先前存放在 `improve-codebase-architecture/LANGUAGE.md` 中的这套语言，现在存放在这里，并做了泛化以便在多个技能间复用。
+  - 新增 **`domain-modeling`** 技能——主动构建并打磨项目的领域模型，对照术语表对术语做压力测试，并保持 `CONTEXT.md` 和 ADR 最新。
+  - `improve-codebase-architecture` 现在从 `/codebase-design` 汲取其架构词汇，从 `/domain-modeling` 汲取其领域模型。
+  - `tdd` 现在依靠 `/codebase-design` 提供接口设计指导——它内联的 `deep-modules.md` / `interface-design.md` 笔记已被移除，改用这个共享技能。
+  - `grill-with-docs` 现在通过 `/domain-modeling` 内联构建领域模型。
 
-  **Breaking:** these skills now depend on the new `codebase-design` / `domain-modeling` skills, so you must install them too.
+  **Breaking:** 这些技能现在依赖新的 `codebase-design` / `domain-modeling` 技能，因此你也必须安装它们。
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Remove the **`caveman`** and **`zoom-out`** skills.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 移除 **`caveman`** 和 **`zoom-out`** 技能。
 
-  - `caveman` was a duplicate of another skill I was testing and was never meant to be public.
-  - `zoom-out` went unused in practice, so it's been removed from the repo.
+  - `caveman` 是我当时在测试的另一个技能的副本，本就不该公开。
+  - `zoom-out` 在实践中没被用到，因此已从仓库中移除。
 
-  **Breaking:** both skills have been removed.
+  **Breaking:** 两个技能都已被移除。
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Rename the **`diagnose`** skill to **`diagnosing-bugs`**.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 把 **`diagnose`** 技能重命名为 **`diagnosing-bugs`**。
 
-  **Breaking:** invoke it as `/diagnosing-bugs` — the old `/diagnose` name no longer exists.
+  **Breaking:** 用 `/diagnosing-bugs` 来调用它——旧的 `/diagnose` 名称不再存在。
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Replace **`write-a-skill`** with **`writing-great-skills`**.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 用 **`writing-great-skills`** 替换 **`write-a-skill`**。
 
-  - Removed `write-a-skill`.
-  - Added `writing-great-skills` (plus its `GLOSSARY.md`) — a reference for writing and editing skills well: the vocabulary and principles that make a skill predictable, hunting no-ops down to the sentence level.
-  - Exposed `grilling` as a model-invoked skill — the reusable interview loop behind `grill-me` and `grill-with-docs`.
+  - 移除了 `write-a-skill`。
+  - 新增了 `writing-great-skills`（及其 `GLOSSARY.md`）——一份关于如何写好和编辑好技能的参考：让技能可预测的那套词汇和原则，把无用操作（no-op）追查到句子级别。
+  - 把 `grilling` 暴露为一个模型触发的技能——它是 `grill-me` 和 `grill-with-docs` 背后那个可复用的访谈循环。
 
-  **Breaking:** `write-a-skill` has been removed; use `writing-great-skills` instead.
+  **Breaking:** `write-a-skill` 已被移除；请改用 `writing-great-skills`。
 
 ### Minor Changes
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Add the **`resolving-merge-conflicts`** skill — a loop for resolving an in-progress git merge or rebase conflict. Standalone, with no dependencies on other skills.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 新增 **`resolving-merge-conflicts`** 技能——一个用于解决进行中的 git 合并或 rebase 冲突的循环。独立运行，不依赖其他技能。
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Rename the skill taxonomy from **Commands / Skills** to **User-invoked / Model-invoked** across the docs, and add `docs/invocation.md` defining the split: user-invoked skills are reachable only when you type them and exist to orchestrate; model-invoked skills can also be reached automatically when the task fits. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 把技能分类法从 **Commands / Skills** 在文档中全面重命名为 **User-invoked / Model-invoked**，并新增 `docs/invocation.md` 来定义这一区分：用户触发的技能只有在你输入它们时才可达，存在的意义是做编排；模型触发的技能在任务契合时也可被自动触达。一个用户触发的技能可以触发模型触发的技能，但绝不能触发另一个用户触发的技能。
 
 ### Patch Changes
 
-- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - Tighten the **`review`** skill: fail-fast ref check, single-sourced rules, and no-op cuts.
+- [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) Thanks [@mattpocock](https://github.com/mattpocock)! - 收紧 **`review`** 技能：快速失败的 ref 检查、单一来源的规则，以及砍掉无用操作（no-op）。

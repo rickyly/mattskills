@@ -2,25 +2,25 @@
 
 A collection of agent skills (slash commands and behaviors) loaded by Claude Code. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-matt-pocock-skills`.
 
-## Language
+## 语言
 
-**Issue tracker**:
-The tool that hosts a repo's issues — GitHub Issues, Linear, a local `.scratch/` markdown convention, or similar. Skills like `to-issues`, `to-prd`, `triage`, and `qa` read from and write to it.
-_Avoid_: backlog manager, backlog backend, issue host
+**Issue tracker**：
+托管某个仓库 issue 的工具——GitHub Issues、Linear、本地 `.scratch/` markdown 约定或类似工具。`to-issues`、`to-prd`、`triage` 和 `qa` 等技能从中读取并向其写入。
+_避免_：backlog manager、backlog backend、issue host
 
-**Issue**:
-A single tracked unit of work inside an **Issue tracker** — a bug, task, PRD, or slice produced by `to-issues`.
-_Avoid_: ticket (use only when quoting external systems that call them tickets)
+**Issue**：
+**Issue tracker** 内单个被跟踪的工作单元——一个 bug、任务、PRD，或由 `to-issues` 产出的切片。
+_避免_：ticket（仅在引用把它们称为 ticket 的外部系统时使用）
 
-**Triage role**:
-A canonical state-machine label applied to an **Issue** during triage (e.g. `needs-triage`, `ready-for-afk`). Each role maps to a real label string in the **Issue tracker** via `docs/agents/triage-labels.md`.
+**Triage role**：
+triage 期间施加到 **Issue** 上的规范状态机标签（如 `needs-triage`、`ready-for-afk`）。每个角色通过 `docs/agents/triage-labels.md` 映射到 **Issue tracker** 中真实的标签字符串。
 
-## Relationships
+## 关系
 
-- An **Issue tracker** holds many **Issues**
-- An **Issue** carries one **Triage role** at a time
+- 一个 **Issue tracker** 持有多个 **Issue**
+- 一个 **Issue** 在同一时刻携带一个 **Triage role**
 
-## Flagged ambiguities
+## 已标记的歧义
 
-- "backlog" was previously used to mean both the *tool* hosting issues and the *body of work* inside it — resolved: the tool is the **Issue tracker**; "backlog" is no longer used as a domain term.
-- "backlog backend" / "backlog manager" — resolved: collapsed into **Issue tracker**.
+- “backlog” 此前既用于指代托管 issue 的*工具*，又用于指代其内部的*工作主体*——已解决：工具是 **Issue tracker**；“backlog” 不再作为领域术语使用。
+- “backlog backend” / “backlog manager”——已解决：合并为 **Issue tracker**。
