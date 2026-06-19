@@ -20,7 +20,7 @@
 
 如果你想跟进这些技能的变动，以及我创建的任何新技能，可以加入我的简报，与另外约 6 万名开发者同行：
 
-[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
+[订阅简报](https://www.aihero.dev/s/skills-newsletter)
 
 ## 快速开始（30 秒安装）
 

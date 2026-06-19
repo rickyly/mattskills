@@ -1,6 +1,6 @@
 # Matt Pocock Skills
 
-A collection of agent skills (slash commands and behaviors) loaded by Claude Code. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-matt-pocock-skills`.
+由 Claude Code 加载的一套代理技能（斜杠命令与行为）。技能按分组归类，并被 `/setup-matt-pocock-skills` 生成的逐仓库配置所使用。
 
 ## 语言
 
